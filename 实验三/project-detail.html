@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>项目详情 | 郑志贤</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- 背景层 -->
+  <div class="bg-layer"></div>
+  <div class="bg-mask"></div>
+
+  <!-- 顶部导航 -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">郑志贤</a>
+      <button class="nav-toggle" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="index.html#home">首页</a></li>
+        <li><a href="index.html#about">关于我</a></li>
+        <li><a href="index.html#direction">学习方向</a></li>
+        <li><a href="index.html#projects">项目作品</a></li>
+        <li><a href="index.html#contact">联系我</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 项目详情内容 -->
+  <section id="detail">
+    <a href="index.html#projects" class="detail-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      返回项目列表
+    </a>
+
+    <div id="detail-content">
+      <!-- 由 js/detail.js 渲染 -->
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>© 2026 郑志贤 · 个人作品集</p>
+  </footer>
+
+  <!-- 脚本 -->
+  <script src="js/projects.js"></script>
+  <script src="js/detail.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

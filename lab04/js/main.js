@@ -190,10 +190,51 @@ function setupNav() {
   onScroll();
 }
 
+// ===== 主题切换：浅色 / 深色，使用 localStorage 记忆用户选择 =====
+const THEME_KEY = 'portfolio-theme';
+
+function getStoredTheme() {
+  try {
+    return localStorage.getItem(THEME_KEY);
+  } catch (e) {
+    return null; // 隐私模式等场景下 localStorage 不可用，退化为默认浅色
+  }
+}
+
+function applyTheme(theme) {
+  const isDark = theme === 'dark';
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  btn.setAttribute('aria-pressed', String(isDark));
+  btn.setAttribute('aria-label', isDark ? '切换到浅色主题' : '切换到深色主题');
+  const text = btn.querySelector('.theme-toggle-text');
+  if (text) text.textContent = isDark ? '浅色' : '深色';
+}
+
+function setupTheme() {
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  applyTheme(getStoredTheme() === 'dark' ? 'dark' : 'light');
+  btn.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (e) {
+      /* 存储不可用时仅本次会话生效 */
+    }
+    applyTheme(next);
+  });
+}
+
+// 尽早应用已保存的主题，避免刷新时闪回浅色
+applyTheme(getStoredTheme() === 'dark' ? 'dark' : 'light');
+
 // ===== 初始化 =====
 document.addEventListener('DOMContentLoaded', () => {
   renderSkills();
   renderSkillsDetail();
   renderProjects();
   setupNav();
+  setupTheme();
 });

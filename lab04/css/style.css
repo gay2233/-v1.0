@@ -6,9 +6,38 @@
   --line: rgba(31, 41, 51, 0.14);
   --accent: #0f766e;                /* 墨绿青：主色 */
   --accent-soft: rgba(15, 118, 110, 0.08);
+  --accent-line: rgba(15, 118, 110, 0.4);
+  --accent-ink: #ffffff;            /* 主色底上的文字 */
   --accent-warm: #c2711d;           /* 暖金（加深）：点缀色（白底可读） */
   --accent-warm-soft: rgba(194, 113, 29, 0.12);
+  --chip-bg: #ffffff;               /* 标签底色 */
+  --chip-ink: #1e2a2f;
+  --chip-line: rgba(255, 255, 255, 0.55);
+  --overlay-ink: #1f2933;           /* 图片上的浅色控件内文字 */
+  --shadow-soft: rgba(31, 35, 40, 0.08);
   --radius: 12px;
+  color-scheme: light;
+}
+
+/* ===== 深色主题：只覆盖颜色变量，结构与布局保持不变 ===== */
+html[data-theme="dark"] {
+  --bg: #11161d;
+  --panel: #1a212b;
+  --ink: #e7edf3;
+  --ink-soft: rgba(231, 237, 243, 0.68);
+  --line: rgba(231, 237, 243, 0.16);
+  --accent: #2dd4bf;
+  --accent-soft: rgba(45, 212, 191, 0.12);
+  --accent-line: rgba(45, 212, 191, 0.45);
+  --accent-ink: #06201d;
+  --accent-warm: #e6a759;
+  --accent-warm-soft: rgba(230, 167, 89, 0.16);
+  --chip-bg: rgba(255, 255, 255, 0.06);
+  --chip-ink: #dbe4ec;
+  --chip-line: rgba(231, 237, 243, 0.18);
+  --overlay-ink: #1f2933;
+  --shadow-soft: rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
 }
 
 body { background: var(--bg); }
@@ -24,6 +53,7 @@ body {
   color: var(--ink);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* ===== 页面整体左右布局 ===== */
@@ -34,6 +64,7 @@ body {
   max-width: 1280px;
   margin: 0 auto;
   background: var(--bg);
+  transition: background-color 0.25s ease;
 }
 
 /* ===== 左侧栏（个人介绍 + 技能 + 导航）===== */
@@ -75,17 +106,44 @@ body {
 .skill-tag {
   font-family: inherit;
   font-size: 12.5px;
-  color: #1e2a2f;
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: var(--chip-ink);
+  border: 1px solid var(--chip-line);
   border-radius: 999px;
   padding: 3px 11px;
-  background: #fff;
+  background: var(--chip-bg);
   cursor: pointer;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 .skill-tag:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
 
-.nav { margin-top: auto; display: flex; flex-direction: column; }
+/* ===== 导航区标题行：主题切换按钮（右对齐）===== */
+.nav-head {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: inherit;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.theme-icon { width: 15px; height: 15px; display: block; }
+.theme-toggle .icon-sun { display: none; }
+html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+html[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
+.nav { display: flex; flex-direction: column; }
 .nav-link {
   position: relative;
   text-decoration: none;
@@ -143,15 +201,15 @@ body {
 .project-info { display: flex; flex-direction: column; align-items: flex-start; }
 .project-no { font-size: 13px; font-weight: 700; color: var(--accent-warm); letter-spacing: 1px; }
 .project-meta { display: flex; align-items: center; gap: 14px; margin-top: 8px; }
-.project-cat { font-size: 12px; color: var(--accent); border: 1px solid rgba(15, 118, 110, 0.4); padding: 2px 10px; border-radius: 999px; }
+.project-cat { font-size: 12px; color: var(--accent); border: 1px solid var(--accent-line); padding: 2px 10px; border-radius: 999px; }
 .project-date { font-size: 13px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 .project-title { margin: 18px 0 10px; font-size: 22px; }
 .project-summary { margin: 0 0 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 46ch; }
 .project-tech { display: flex; flex-wrap: wrap; gap: 8px; }
 .project-tech span {
   font-size: 12px;
-  color: #1e2a2f;
-  background: rgba(255, 255, 255, 0.92);
+  color: var(--chip-ink);
+  background: var(--chip-bg);
   border-radius: 6px;
   padding: 3px 9px;
 }
@@ -185,7 +243,7 @@ body {
   border: none;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.85);
-  color: var(--ink);
+  color: var(--overlay-ink);
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.2s, background 0.2s;
@@ -282,7 +340,7 @@ body {
 }
 .skill-detail-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(31, 35, 40, 0.08);
+  box-shadow: 0 12px 28px var(--shadow-soft);
   border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
 }
 .skill-detail-item:hover::before { transform: scaleY(1); }
@@ -324,7 +382,7 @@ body {
 .btn {
   display: inline-block;
   background: var(--accent);
-  color: #fff;
+  color: var(--accent-ink);
   text-decoration: none;
   padding: 12px 24px;
   border-radius: 999px;
@@ -352,8 +410,10 @@ body {
 
   .skills { margin-top: 22px; }
 
+  .nav-head { margin-top: 22px; margin-bottom: 0; }
+
   .nav {
-    margin-top: 22px;
+    margin-top: 12px;
     flex-direction: row;
     border-top: 1px solid var(--line);
   }
