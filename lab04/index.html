@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="个人作品集网站 - 展示个人介绍、技能方向与项目作品">
+  <title>个人作品集</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- 左侧：个人介绍 + 技能 + 导航（保持稳定） -->
+    <aside class="sidebar">
+      <header class="profile">
+        <div class="avatar">
+          <img src="头像.jfif" alt="头像" class="avatar-img">
+        </div>
+        <h1 class="name">郑志贤</h1>
+        <p class="role">数据科学与大数据技术 · 在读</p>
+        <p class="bio">聚焦 AI 辅助开发与大语言模型应用，主要使用 Python、Java、TypeScript。来自广州软件学院。地址：中国·江门</p>
+      </header>
+
+      <section class="skills">
+        <h2 class="sidebar-title">技能方向</h2>
+        <div class="skill-group" id="skillGroups"><!-- 由 JS 渲染 --></div>
+      </section>
+
+      <nav class="nav">
+        <a class="nav-link active" href="#works">项目作品</a>
+        <a class="nav-link" href="#about">关于我</a>
+        <a class="nav-link" href="#skills">技能介绍</a>
+        <a class="nav-link" href="#contact">联系方式</a>
+      </nav>
+
+      <footer class="sidebar-foot">
+        <a href="https://github.com/zhengzhixiang-dev" target="_blank" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6a11.5 11.5 0 0 0 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+        <a href="mailto:2843638315@qq.com" aria-label="邮箱"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+      </footer>
+    </aside>
+
+    <!-- 右侧：主要内容区 -->
+    <main class="content">
+      <!-- 项目作品 -->
+      <section id="works" class="section">
+        <header class="section-head">
+          <span class="section-index">01</span>
+          <div>
+            <h2 class="section-title">项目作品</h2>
+            <p class="section-sub">精选项目与练习作品</p>
+          </div>
+        </header>
+        <div id="projects" class="projects"><!-- 由 JS 渲染 --></div>
+      </section>
+
+      <!-- 关于我 -->
+      <section id="about" class="section">
+        <header class="section-head">
+          <span class="section-index">02</span>
+          <div>
+            <h2 class="section-title">关于我</h2>
+            <p class="section-sub">我的故事</p>
+          </div>
+        </header>
+        <div class="about-body">
+          <p>我是郑志贤，数据科学与大数据技术专业的学生，目前主要关注 AI 辅助开发与大语言模型技术。</p>
+          <p>平时主要使用 Python、Java 和 TypeScript 进行项目开发，也在持续学习前后端开发、数据可视化和 AI 应用构建，乐于把想法逐步落地为可用、可靠的作品。</p>
+          <p>现就读于广州软件学院，坐标中国·江门，期待与老师、同学及企业伙伴交流合作。</p>
+        </div>
+      </section>
+
+      <!-- 技能介绍 -->
+      <section id="skills" class="section">
+        <header class="section-head">
+          <span class="section-index">03</span>
+          <div>
+            <h2 class="section-title">技能介绍</h2>
+            <p class="section-sub">我的技术栈</p>
+          </div>
+        </header>
+        <div class="skills-detail" id="skillsDetail"><!-- 由 JS 渲染 --></div>
+      </section>
+
+      <!-- 联系方式 -->
+      <section id="contact" class="section">
+        <header class="section-head">
+          <span class="section-index">04</span>
+          <div>
+            <h2 class="section-title">联系方式</h2>
+            <p class="section-sub">随时欢迎交流</p>
+          </div>
+        </header>
+        <div class="contact-body">
+          <ul class="contact-list">
+            <li><span class="contact-label">邮箱</span><a href="mailto:2843638315@qq.com">2843638315@qq.com</a></li>
+            <li><span class="contact-label">GitHub</span><a href="https://github.com/zhengzhixiang-dev" target="_blank">github.com/zhengzhixiang-dev</a></li>
+            <li><span class="contact-label">主页</span><a href="https://zhengzhixiang.dev" target="_blank">zhengzhixiang.dev</a></li>
+            <li><span class="contact-label">位置</span><span>中国·江门</span></li>
+          </ul>
+          <a class="btn" href="mailto:2843638315@qq.com">写邮件给我</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
